@@ -8,7 +8,11 @@ require.config({
         jquery: 'lib/jquery-1.11',
         jqueryui: 'lib/jquery_ui',
         autocomplete: 'lib/jquery.autocomplete', 
-        datatables: 'lib/jquery.dataTables.min'
+        datatables: 'lib/jquery.dataTables.min', 
+        gridster: 'lib/jquery.gridster',
+        utils: 'lib/utils',
+        gridsterExtras: 'lib/jquery.gridster.extras',
+        draggable: 'lib/jquery.draggable'
     }
 });
 

@@ -136,7 +136,19 @@ a:hover {
 	box-shadow: 2px 2px 2px gainsboro;
 	margin:10px;
 	padding:10px;
-	border-style:solid;
-	border-color:whitesmoke;
-	border-width:1px;
+	//border-style:solid;
+	//border-color:whitesmoke;
+	//border-width:1px;
+}
+
+.upColor {
+	background-color:#9EE19E;
+}
+
+.downColor {
+	background-color:#FFC9C9;
+}
+
+.gridster {
+	background-color:whitesmoke;
 }

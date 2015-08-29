@@ -1,19 +1,24 @@
 // Now we've configured RequireJS, we can load our dependencies and start
-define([ 'ractive', 'rv!../ractive/template','jquery','autocomplete', 'datatables'], function ( Ractive, html,$,autocomplete,datatables) {
+define([ 'ractive', 'rv!../ractive/template','jquery','autocomplete', 'datatables', 'gridster','utils','gridsterExtras','draggable'], 
+	function ( Ractive, html,$,autocomplete,datatables, gridster, utils, gridsterExtras, draggable) {
 
 
 
-    var sampleRactive = new Ractive({
+    var stockRactive = new Ractive({
       el: 'ractiveDiv',
       template: html,
       data: {
-      	"response":[]
+      	"response":[],
+      	"numCards":0,
+      	"responseCard": [
+      						{"showSearch":true}
+      					]
       }
     });
 
 
 
-	$("#symbol").autocomplete({
+	$(".symbol").autocomplete({
 		deferRequestBy: 400,
 	    lookup: function (query, done) {
 	        // Do ajax call or lookup locally, when done,
@@ -54,22 +59,69 @@ define([ 'ractive', 'rv!../ractive/template','jquery','autocomplete', 'datatable
 			dataType: "jsonp",
 			data: {"symbol":symbol},
 			success: function(json) {
-				//sampleRactive.set("response", json);
+				//stockRactive.set("response", json);
 				processQuote(json);
 			},
 		  	error: function(json){
-		  		//sampleRactive.set("response",JSON.stringify(json));
+		  		//stockRactive.set("response",JSON.stringify(json));
 				response.push(json);
 			}
 		});
 	}
 
 	function processQuote(data) {
-		//sampleRactive.get("response").push(data);
+		var dataObj = {};
+		dataObj.raw = data;
+		dataObj.name = data.Name;
+		if (data.Change>0) {
+			dataObj.dir = "upColor";
+		} else if (data.Change<0) {
+			dataObj.dir = "downColor";
+		}
+		pushDataObj(dataObj);
+		//buildGrid(data);
 		//console.log(data);
 		//$('#stockTable').DataTable();
+		/*var dataObj = {};
+		dataObj.raw = data;
+		for (items in data) {
+			dataObj.name = {}
+		}*/
 	}
 
-    return sampleRactive;
+	function pushDataObj(data) {
+		var currentCardNum = stockRactive.get("numCards");
+		var currentCard = stockRactive.get("responseCard["+currentCardNum+"]");
+		stockRactive.set("responseCard["+currentCardNum+"].showSearch",false);
+		stockRactive.set("responseCard["+currentCardNum+"].data",data);
+		var newCardObj = {"showSearch":true};
+		stockRactive.get("responseCard").push(newCardObj);
+		stockRactive.set("numCards",currentCardNum+1);
+	}
+
+	function buildGrid(data) {
+	    var gridster;
+
+	    $(function(){
+
+	      gridster = $(".gridster").gridster({
+	          widget_margins: [5, 5],
+	          widget_base_dimensions: [100, 55]
+	      }).data('gridster');
+
+	      var widgets = [
+	          ['<div class="card">WHEE</div>', 1, 2],
+	          ['<div class="card">WHEE</div>', 3, 2],
+	          ['<div class="card">WHEE</div>', 3, 2]
+	      ];
+
+	      $.each(widgets, function(i, widget){
+	          gridster.add_widget.apply(gridster, widget)
+	      });
+
+	    });
+	}
+
+    return stockRactive;
 
 });
