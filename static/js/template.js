@@ -119,14 +119,27 @@ define([ 'ractive', 'rv!../ractive/template','autocomplete', 'datatables', 'grid
 		dataObj.dir = "black-text";
 		dataObj.dirVal = "--";
 		dataObj.dirIcon = "trending_flat";
+		dataObj.dirHighlight = "";
 		if (data.Change>0) {
 			dataObj.dir = "green-text";
 			dataObj.dirVal = "+"+data.Change.toFixed(4);
 			dataObj.dirIcon = "trending_up";
+			if (Math.abs(data.ChangePercent)>1) {
+				dataObj.dirHighlight = "green lighten-5";
+			}
+			if (Math.abs(data.ChangePercent)>5) {
+				dataObj.dirHighlight = "green lighten-4";
+			}
 		} else if (data.Change<0) {
 			dataObj.dir = "red-text";
 			dataObj.dirVal = "-"+data.Change.toFixed(4);
 			dataObj.dirIcon = "trending_down";
+			if (Math.abs(data.ChangePercent)>1) {
+				dataObj.dirHighlight = "red lighten-5";
+			}
+			if (Math.abs(data.ChangePercent)>5) {
+				dataObj.dirHighlight = "red lighten-4";
+			}
 		}
 		pushDataObj(dataObj);
 		//buildGrid(data);
@@ -142,7 +155,7 @@ define([ 'ractive', 'rv!../ractive/template','autocomplete', 'datatables', 'grid
 	function pushDataObj(data) {
 		var currentCard = stockRactive.get("responseCard["+currentCardNum+"]");
 		stockRactive.set("responseCard["+currentCardNum+"].showSearch",false);
-		stockRactive.set("responseCard["+currentCardNum+"].styles","card z-depth-1");
+		stockRactive.set("responseCard["+currentCardNum+"].styles","card z-depth-1 " + data.dirHighlight);
 		stockRactive.set("responseCard["+currentCardNum+"].data",data);
 		var newCardObj = {"showSearch":false};
 		stockRactive.get("responseCard").push(newCardObj);
