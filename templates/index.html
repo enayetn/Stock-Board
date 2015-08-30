@@ -4,21 +4,44 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Anylytics Template</title>
-    <link href="./static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <title>Stock Board</title>
     <link rel="stylesheet" href="./static/css/anylytics.css"/>
     <link rel="stylesheet" href="./static/css/animate.css"/>
+    <link href="./static/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./static/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href="./static/css/jquery.gridster.css"/>
     <link rel="icon" type="image/x-icon" href="./static/img/favicon.png">
+    <script type="text/javascript" src="./static/js/lib/jquery-1.11.js"></script>
+    <script type="text/javascript" src="./static/js/lib/materialize.min.js"></script>
 
 </head>
 <body>
+
+    <nav class="blue">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">Stock Explorer</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="badges.html">About</a></li>
+                <li><a href="collapsible.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h2>Stock Explorer</h2>
+        <div class="preloader-wrapper big active center-center" id="initialLoad">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                <div class="circle"></div>
+                </div>
+            </div>
+        </div>
         <div id='ractiveDiv'></div>
     </div>
-
      <!-- RequireJS means we use this plugin to load everything else! -->
      <!-- See main.js -->
     <script data-main="./static/js/main" src="./static/js/lib/require.js"></script>

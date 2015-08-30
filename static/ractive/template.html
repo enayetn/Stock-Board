@@ -1,4 +1,8 @@
-
+{{#if showLoading}}
+<div class="progress fixedTop">
+	<div class="indeterminate"></div>
+</div>
+{{/if}}
 
 {{#if response}}
 <div class="row">
@@ -24,17 +28,46 @@
 {{/if}}
 
 <div class="row">
-{{#each responseCard}}
-	<div class="col-sm-4">
-		<div class="card {{this.data.dir}}">
-			{{#if this.showSearch}}
-				<div class="form-group">
-					<label for="symbol">Company:</label>
-					<input type="symbol" class="form-control symbol" id="symbol">
-				</div>
+{{#responseCard:i}}
+	<div class="col s12 l3">
+		<div class="{{this.styles}}">
+			{{#if showSearch}}
+          	<div class="card-content">
+				<input placeholder="Search for a stock" id="symbol{{i}}" type="text" class="validate" autofocus>
+			</div>
 			{{/if}}
-			<h4>{{this.data.name}}</h4>
+			{{#if this.data}}
+          	<div class="card-content">
+				<!--<a class="btn-floating btn-tiny waves-effect waves-light red closeBtn" id="removeCard{{i}}"><i class="material-icons rotate45">games</i></a>-->
+				<span class="card-title {{this.data.dir}} singleLine" title="{{this.data.name}}">
+					{{this.data.raw.Symbol}}
+					<a href="http://finance.yahoo.com/q?s={{this.data.raw.Symbol}}" target="_blank"><i class="material-icons smaller">launch</i></a>
+				</span>
+				<p class="textOverflowHide" title="{{this.data.name}}">{{this.data.name}}</p>
+				<!--{{#each this.data.raw}}
+				{{@key}}: {{this}}<br/>
+				{{/each}}-->
+				<table>
+
+					<tbody>
+						<tr>
+							<th>Last Price</th>
+							<td>${{this.data.raw.LastPrice}}</td>
+						</tr>
+						<tr class="{{this.data.dir}}">
+							<th><i class="material-icons">{{this.data.dirIcon}}</i></th>
+							<td>{{this.data.dirVal}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="card-action">
+				<span class="grey-text lighten-4"><strong>Updated</strong>: {{this.data.raw.Timestamp}}</span><br/>
+			</div>
+			{{/if}}
 		</div>
 	</div>
-{{/each}}
+{{/responseCard}}
 </div>
+
+<a class="btn-floating btn-large waves-effect waves-light green addQuote" id="addButton0"><i class="material-icons">add</i></a>

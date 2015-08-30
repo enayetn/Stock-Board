@@ -4,7 +4,7 @@
 	http://anylytics.io
 */
 
-/******* FONTS ********/
+/******* FONTS *******
 
 @font-face {
  font-family: 'SourceSans';
@@ -24,9 +24,9 @@
 @font-face {
  font-family: 'Andada-Bold';
  src: url("../fonts/Andada-Bold.otf") format("opentype");
-}
+}*/
 
-/******* TYPOGRAPHY ********/
+/******* TYPOGRAPHY *******
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'SourceSans';
@@ -68,9 +68,9 @@ a:hover {
 	color: #E2B197;
 	text-decoration: none;
 	cursor: pointer;
-}
+}*/
 
-/******* TOP MENU ********/
+/******* TOP MENU *******
 
 #logo {
 	padding-top:5px;
@@ -120,7 +120,7 @@ a:hover {
 	border-bottom-style:solid;
 	//border-bottom-width:2px;
 	box-shadow: 1px 1px 4px #888888;
-}
+}*/
 
 /******* CONTENT ********/
 
@@ -132,13 +132,27 @@ a:hover {
 .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 
 .card {
-	background-color:white;
-	box-shadow: 2px 2px 2px gainsboro;
-	margin:10px;
-	padding:10px;
+	//background-color:white;
+	//box-shadow: 2px 2px 2px gainsboro;
+	//margin:10px;
+	//padding:10px;
 	//border-style:solid;
 	//border-color:whitesmoke;
 	//border-width:1px;
+}
+
+.addStuff {
+    text-align: center;
+    border-style: dashed;
+    border-width: 5px;
+    border-color: gainsboro;
+    padding-top: 20px;
+}
+
+.addQuote {
+	position:fixed!important;
+	bottom:50px;
+	right:50px;
 }
 
 .upColor {
@@ -151,4 +165,53 @@ a:hover {
 
 .gridster {
 	background-color:whitesmoke;
+}
+
+.fixedTop {
+    position: fixed!important;
+    top: 0!important;
+    left: 0!important;
+    margin-top: 0!important;
+}
+
+.closeBtn {
+	position:absolute!important;
+	top:0;
+	right:0;
+}
+
+i.material-icons.rotate45 {
+    transform: rotate(45deg);
+
+}
+
+nav {
+	margin-bottom:20px;
+}
+
+.textOverflowHide {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.center-center {
+	position: absolute!important;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.material-icons.smaller {
+	font-size: 20px!important;
+}
+
+.refreshIcon {
+	font-size:14px!important;
+}
+
+.link {
+	cursor: pointer;
 }

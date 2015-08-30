@@ -12,7 +12,9 @@ require.config({
         gridster: 'lib/jquery.gridster',
         utils: 'lib/utils',
         gridsterExtras: 'lib/jquery.gridster.extras',
-        draggable: 'lib/jquery.draggable'
+        draggable: 'lib/jquery.draggable',
+        materialize: 'lib/materialize.min', 
+        hammer: 'hammerjs'
     }
 });
 
